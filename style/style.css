@@ -1,0 +1,269 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container global */
+.global {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background-color: #2c3e50;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Sidebar (navigation réorganisée) */
+.sidebar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Section menu (à gauche) */
+.menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.menu a:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+/* Section log (à droite) */
+.log {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.log li {
+    margin: 0;
+    list-style: none;
+}
+
+.log a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.log a:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+/* Style différencié pour les boutons Login/Sign Up */
+.log li:first-child a {
+    border: 2px solid #3498db;
+    color: #3498db;
+}
+
+.log li:first-child a:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.log li:last-child a {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.log li:last-child a:hover {
+    background-color: #c0392b;
+}
+
+/* Corps principal */
+.body {
+    flex: 1;
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    min-height: 400px;
+}
+
+/* Footer */
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .menu ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .menu a {
+        text-align: center;
+        border-bottom: 1px solid #34495e;
+    }
+    
+    .log {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+    }
+    
+    .log li {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .log a {
+        text-align: center;
+        margin: 0;
+        width: 90%;
+        margin-left: 5%;
+    }
+    
+    .body {
+        padding: 20px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 0;
+    }
+    
+    .menu a {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .log a {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .footer {
+        padding: 15px;
+    }
+    
+    .footer p {
+        font-size: 12px;
+    }
+}
+
+/* Animation pour une meilleure UX */
+.sidebar {
+    transition: all 0.3s ease;
+}
+
+.menu a,
+.log a {
+    transition: all 0.3s ease;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+td a {
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+td a:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+td a:last-child {
+    background-color: #dc3545;
+    color: white;
+}
+
+.add {
+    margin: 20px 0;
+    text-align: right;
+}
+
+.add a {
+    display: inline-block;
+    color: #28a745;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 2px solid #28a745;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.add a:hover {
+    background-color: #28a745;
+    color: white;
+}
