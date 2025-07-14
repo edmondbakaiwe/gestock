@@ -1,6 +1,10 @@
 <?php
     include('config.php');
     if ($_SERVER['REQUEST_METHOD']=== "POST") {
+        // Requete pour verifier si l'utilisateur n'existe pas encore
+        $requete_existance = 'SELECT * FROM user WHERE (email) VALUES (:email)';
+        $verif = $mysqlclient->prepare($requete_existance);
+
         $requete = 'INSERT INTO user (nom, email, telephone, password) VALUES (:nom, :email, :telephone, :password) ';
         $register = $mysqlclient->prepare($requete);
         $nom = htmlspecialchars(trim($_POST['nom']));
@@ -9,21 +13,31 @@
         $password = $_POST['password'];
         $password_haché = password_hash($password, PASSWORD_DEFAULT);
         try {
-            $resultat = $register -> execute([
-                'nom'=> $nom,
-                'email'=> $email,
-                'telephone'=> $telephone,
-                'password'=> $password_haché,
+            $verif = $requete_exe->execute([
+                'email'=> $email
             ]);
-            if ($resultat) {
+
+            if ($verif -> rowCount()>0) {
+                echo 'Email existant';
+            }
+            else
+            {
+                $resultat = $register -> execute([
+                    'nom'=> $nom,
+                    'email'=> $email,
+                    'telephone'=> $telephone,
+                    'password'=> $password_haché,
+                ]);
+                if ($resultat) {
                 header("Location: index.php");
                 exit;
             }
+            }
+            
         } catch (Exception $e) {
             die('Erreur: Inscription echoué'. $e->getMessage());
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
