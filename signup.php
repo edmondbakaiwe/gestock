@@ -2,8 +2,9 @@
     include('config.php');
     if ($_SERVER['REQUEST_METHOD']=== "POST") {
         // Requete pour verifier si l'utilisateur n'existe pas encore
-        $requete_existance = 'SELECT * FROM user WHERE (email) VALUES (:email)';
-        $verif = $mysqlclient->prepare($requete_existance);
+        $search_email = 'SELECT * FROM user WHERE (email) VALUES (:email)';
+        $requete_exe = $mysqlclient->prepare($search_email);
+
 
         $requete = 'INSERT INTO user (nom, email, telephone, password) VALUES (:nom, :email, :telephone, :password) ';
         $register = $mysqlclient->prepare($requete);
@@ -13,11 +14,11 @@
         $password = $_POST['password'];
         $password_haché = password_hash($password, PASSWORD_DEFAULT);
         try {
-            $verif = $requete_exe->execute([
+            $requete_exe->execute([
                 'email'=> $email
             ]);
 
-            if ($verif -> rowCount()>0) {
+            if ($requete_exe -> rowCount()>0) {
                 echo 'Email existant';
             }
             else
