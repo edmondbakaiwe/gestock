@@ -16,7 +16,7 @@
                 'password'=> $password_haché,
             ]);
             if ($resultat) {
-                header("Location: login.php");
+                header("Location: index.php");
                 exit;
             }
         } catch (Exception $e) {
