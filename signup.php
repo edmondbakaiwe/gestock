@@ -2,7 +2,7 @@
     include('config.php');
     if ($_SERVER['REQUEST_METHOD']=== "POST") {
         // Requete pour verifier si l'utilisateur n'existe pas encore
-        $search_email = 'SELECT * FROM user WHERE (email) VALUES (:email)';
+        $search_email = 'SELECT * FROM user WHERE email=:email';
         $requete_exe = $mysqlclient->prepare($search_email);
 
 
