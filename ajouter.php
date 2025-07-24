@@ -10,12 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             'nom' => $_POST['nom'],
             'description' => $_POST['description']
         ]);
-        
-        if ($resultat) {
-            echo "Produit ajouté avec succès.";
-        } else {
-            echo "Erreur lors de l'ajout du produit.";
-        }
+        header("Location: produit.php");
+        exit();
     } catch (PDOException $e) {
         echo "Erreur: " . $e->getMessage();
     }
