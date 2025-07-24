@@ -1,3 +1,25 @@
+<?php 
+    include('config.php');
+
+    $produits = [];
+    if ($_SERVER['REQUEST_METHOD']==="GET") {
+        $requete = 'SELECT * FROM produit';
+        $show = $mysqlclient -> prepare($requete);
+        try {
+            $affichage = $show->execute();
+            $produits = $show->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\Exception $e) {
+            die('Erreur: Affichage echoué'.$e->getMessage());
+        }
+
+        
+        
+    }
+    
+        
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,35 +43,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Sac</td>
-                        <td>
-                            <a href="modifier.php?id=01">Modifier</a>
-                            <a href="supprimer.php?id=01">Supprimer</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Chaussures</td>
-                        <td>
-                            <a href="modifier.php?id=02">Modifier</a>
-                            <a href="supprimer.php?id=02">Supprimer</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Veste</td>
-                        <td>
-                            <a href="modifier.php?id=03">Modifier</a>
-                            <a href="supprimer.php?id=03">Supprimer</a>
-                        </td>
-                    </tr>
+                    <?php foreach ($produits as $produit):?>
+                        <tr>
+                            <td><?= htmlspecialchars($produit['id']) ?></td>
+                            <td><?= htmlspecialchars($produit['nom']) ?></td>
+                            <td>
+                                <a href="modifier.php?id=<?= $produit['id'] ?>">Modifier</a>
+                                <a href="#">
+                                    <form action="supprimer.php" method="POST" style="display:inline;">
+                                        <input type="hidden" name="id" value="<?= $produit['id'] ?>">
+                                        <button type="submit">Supprimer</button>
+                                    </form>
+
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th scope="row" colspan="2">Total produits</th>
-                        <td>3</td>
+                        <td><?= count($produits); ?></td>
                     </tr>
                 </tfoot>
             </table>

@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <form action="" method="post">
         <fieldset>
             <legend>Ajouter les produits</legend>
+            <input type="hidden" name="id" value="<?= htmlspecialchars($produit['id']) ?>">
+
             
             <label for="nom">Nom: </label>
             <input type="text" name="nom" id="nom" required>
