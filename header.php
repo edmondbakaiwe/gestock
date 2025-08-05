@@ -21,7 +21,7 @@ include('config.php');
                     </ul>
                 </div>
                 <div class="log">
-                    <form action="" method="post">
+                    <!-- <form action="" method="post">
                         <input type="submit" value="Déconnecter" style="
                             background-color: #e74c3c;
                             color: white;
@@ -37,7 +37,7 @@ include('config.php');
                             onmouseover="this.style.backgroundColor='#c0392b'; this.style.transform='scale(1.05)';" 
                             onmouseout="this.style.backgroundColor='#e74c3c'; this.style.transform='scale(1)';">
 
-                    </form>
+                    </form> -->
                 </div>
                 
             </div>

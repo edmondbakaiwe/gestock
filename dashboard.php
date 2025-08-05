@@ -1,5 +1,13 @@
 <?php
     include('config.php');
+    $requete = 'SELECT * FROM produit';
+    $produit = $mysqlclient -> prepare($requete);
+    try {
+        $product = $produit-> execute();
+        $product = $produit -> fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        die('Erreur: Erreur lors de la recupération du produit'.$e->getMessage());
+    }
     
 ?>
 <!DOCTYPE html>
@@ -8,7 +16,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/index.css">
 
     <title>Document</title>
 </head>
@@ -20,6 +27,18 @@
                 <h1>Bienvenue dans notre magasin</h1>
                 <p>Gérer vos produits en efficacité</p>
                 <a href="produit.php" class="btn-primary">Gère ton stocke combi</a>
+            </section>
+            <section class="hero">
+                <?php foreach ($product as $produc):?>
+                    <div class="display-produit">
+                        <div class="image">
+                            <img src="images/<?= htmlspecialchars($produc['image']) ?>" alt="" width="200">
+                        </div>
+                        <div class="title">
+                            <p><?= htmlspecialchars($produc['nom']) ?> </p>
+                        </div>
+                    </div>
+                <?php endforeach ;?>
             </section>
             
         </div>
